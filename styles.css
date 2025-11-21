@@ -1,0 +1,499 @@
+:root {
+  color-scheme: light;
+  --skin: #f5c08a;
+  --skin-shadow: #e3a06a;
+  --hair: #1f1b1a;
+  --shirt: #135a7a;
+  --shirt-light: #1f7da3;
+  --shirt-dark: #0b3d55;
+  --pants: #1d3144;
+  --shoe: #111822;
+  --guitar-body: #d48c3c;
+  --guitar-dark: #b77125;
+  --sunset: linear-gradient(180deg, #ffb997 0%, #f67f6d 40%, #8c3f62 100%);
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #f5f7fb;
+  color: #182230;
+}
+
+.scene {
+  width: min(100%, 960px);
+  padding: 48px 24px 64px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.16);
+  padding: 32px;
+}
+
+.card__header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.card__header h1 {
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  margin: 0;
+  color: #132132;
+}
+
+.card__header p {
+  margin: 12px 0 0;
+  font-size: 1.05rem;
+  color: #415063;
+}
+
+.canvas {
+  position: relative;
+  width: min(600px, 100%);
+  aspect-ratio: 3 / 2;
+  margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--sunset);
+}
+
+.sky {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.4), transparent 55%);
+}
+
+.sun {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  top: 12%;
+  left: 14%;
+  background: radial-gradient(circle at 30% 30%, #ffe1a4, #f5a33f 70%);
+  filter: blur(0.4px);
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  width: 120%;
+  height: 36%;
+  border-radius: 50% 50% 0 0;
+  background: linear-gradient(180deg, #27444f 0%, #1a2d36 80%);
+}
+
+.foliage {
+  position: absolute;
+  bottom: 25%;
+  width: 120px;
+  height: 180px;
+  filter: drop-shadow(-18px 16px 24px rgba(0, 0, 0, 0.18));
+  background: radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.12), transparent 60%), #16413f;
+  clip-path: polygon(50% 0%, 75% 10%, 92% 32%, 100% 60%, 90% 90%, 60% 100%, 35% 90%, 15% 70%, 5% 45%, 18% 20%);
+}
+
+.foliage::after {
+  content: "";
+  position: absolute;
+  inset: 6% 10%;
+  background: rgba(255, 255, 255, 0.12);
+  clip-path: polygon(50% 0%, 72% 14%, 88% 36%, 92% 64%, 78% 86%, 54% 94%, 30% 82%, 20% 56%, 28% 28%);
+}
+
+.foliage--left {
+  left: 6%;
+  transform: rotate(-4deg) scale(1.05);
+}
+
+.foliage--right {
+  right: 4%;
+  transform: scaleX(-1) rotate(-6deg);
+}
+
+.guitarist {
+  position: absolute;
+  left: 46%;
+  bottom: 22%;
+  width: 220px;
+  height: 260px;
+  transform: translateX(-50%);
+}
+
+.hair {
+  position: absolute;
+  background: var(--hair);
+  border-radius: 50%;
+}
+
+.hair--top {
+  width: 130px;
+  height: 120px;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 55% 45% 40% 45%;
+}
+
+.hair--side {
+  width: 90px;
+  height: 110px;
+  top: 86px;
+  left: 38%;
+  transform: translateX(-50%);
+  border-radius: 60% 40% 35% 45%;
+}
+
+.face {
+  position: absolute;
+  width: 110px;
+  height: 140px;
+  top: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, var(--skin) 0%, var(--skin-shadow) 80%);
+  border-radius: 45% 48% 46% 52%;
+}
+
+.brow {
+  position: absolute;
+  width: 42px;
+  height: 8px;
+  top: 38px;
+  background: var(--hair);
+  border-radius: 50px;
+}
+
+.brow--left {
+  left: 20px;
+  transform: rotate(-6deg);
+}
+
+.brow--right {
+  right: 20px;
+  transform: rotate(6deg);
+}
+
+.eye {
+  position: absolute;
+  width: 22px;
+  height: 12px;
+  top: 54px;
+  background: var(--hair);
+  border-radius: 50%;
+}
+
+.eye::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 5px;
+  top: 1px;
+  left: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+}
+
+.eye--left {
+  left: 22px;
+}
+
+.eye--right {
+  right: 22px;
+}
+
+.nose {
+  position: absolute;
+  width: 16px;
+  height: 28px;
+  top: 74px;
+  left: 50%;
+  background: rgba(227, 160, 106, 0.7);
+  border-radius: 45% 45% 50% 50%;
+  transform: translateX(-50%);
+}
+
+.mouth {
+  position: absolute;
+  width: 48px;
+  height: 18px;
+  top: 106px;
+  left: 50%;
+  border-radius: 40px;
+  background: linear-gradient(180deg, #b45a62, #8f3c4b);
+  transform: translateX(-50%);
+}
+
+.neck {
+  position: absolute;
+  width: 48px;
+  height: 42px;
+  top: 182px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--skin-shadow);
+  border-radius: 20px;
+}
+
+.ear {
+  position: absolute;
+  width: 26px;
+  height: 42px;
+  top: 122px;
+  left: 27%;
+  background: var(--skin);
+  border-radius: 50%;
+  box-shadow: inset 3px 0 0 rgba(0, 0, 0, 0.08);
+}
+
+.shirt {
+  position: absolute;
+  width: 180px;
+  height: 160px;
+  top: 190px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  background: linear-gradient(180deg, var(--shirt-light), var(--shirt-dark));
+  border-radius: 50% 50% 40% 50%;
+  overflow: hidden;
+}
+
+.pattern {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  opacity: 0.12;
+  background: conic-gradient(from 45deg, transparent 0 15%, rgba(255, 255, 255, 0.8) 15% 25%, transparent 25% 50%);
+}
+
+.pattern--1 {
+  top: -60px;
+  left: -30px;
+}
+
+.pattern--2 {
+  top: 30px;
+  left: -40px;
+  transform: rotate(45deg);
+}
+
+.pattern--3 {
+  top: 60px;
+  left: 50px;
+  transform: rotate(-35deg);
+}
+
+.arm {
+  position: absolute;
+  background: linear-gradient(180deg, var(--shirt-light), var(--shirt-dark));
+  border-radius: 40px;
+}
+
+.arm--left {
+  width: 160px;
+  height: 44px;
+  top: 240px;
+  left: 12px;
+  transform: rotate(14deg);
+}
+
+.arm--right {
+  width: 152px;
+  height: 40px;
+  top: 228px;
+  right: 8px;
+  transform: rotate(-22deg);
+  transform-origin: right center;
+}
+
+.hand {
+  position: absolute;
+  width: 46px;
+  height: 44px;
+  background: linear-gradient(180deg, var(--skin), var(--skin-shadow));
+  border-radius: 35px;
+}
+
+.hand--strum {
+  top: 266px;
+  left: 98px;
+  transform: rotate(32deg);
+}
+
+.hand--fret {
+  top: 212px;
+  right: 14px;
+  transform: rotate(-22deg);
+}
+
+.guitar {
+  position: absolute;
+  width: 240px;
+  height: 180px;
+  top: 200px;
+  left: 30px;
+}
+
+.guitar__body {
+  position: absolute;
+  width: 170px;
+  height: 150px;
+  background: radial-gradient(circle at 30% 30%, #f3c886, var(--guitar-body) 60%);
+  border-radius: 50% 60% 60% 40%;
+  box-shadow: inset -12px -8px 0 rgba(0, 0, 0, 0.12);
+}
+
+.guitar__hole {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  top: 46px;
+  left: 70px;
+  background: #2b1a12;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 6px rgba(0, 0, 0, 0.18);
+}
+
+.guitar__bridge {
+  position: absolute;
+  width: 68px;
+  height: 12px;
+  top: 92px;
+  left: 112px;
+  background: var(--guitar-dark);
+  border-radius: 12px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.22);
+}
+
+.guitar__neck {
+  position: absolute;
+  width: 120px;
+  height: 22px;
+  top: 70px;
+  left: 140px;
+  background: linear-gradient(90deg, #c38442, #8d5625);
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.guitar__head {
+  position: absolute;
+  width: 34px;
+  height: 54px;
+  top: 56px;
+  left: 246px;
+  background: var(--guitar-dark);
+  border-radius: 16px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.string {
+  position: absolute;
+  width: 196px;
+  height: 2px;
+  top: 82px;
+  left: 120px;
+  background: rgba(240, 239, 233, 0.9);
+  transform-origin: left center;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.string--1 {
+  transform: translateY(-6px) rotate(1deg);
+}
+
+.string--2 {
+  transform: translateY(-3px);
+}
+
+.string--3 {
+  transform: translateY(-1px) rotate(-0.5deg);
+}
+
+.string--4 {
+  transform: translateY(1px) rotate(0.4deg);
+}
+
+.string--5 {
+  transform: translateY(4px);
+  height: 2.5px;
+}
+
+.string--6 {
+  transform: translateY(7px);
+  height: 3px;
+}
+
+.leg {
+  position: absolute;
+  width: 76px;
+  height: 140px;
+  top: 308px;
+  background: var(--pants);
+  border-radius: 30px;
+  box-shadow: inset -4px -6px 0 rgba(0, 0, 0, 0.24);
+}
+
+.leg--left {
+  left: 72px;
+  transform: rotate(6deg);
+}
+
+.leg--right {
+  right: 60px;
+  transform: rotate(-8deg);
+}
+
+.foot {
+  position: absolute;
+  width: 88px;
+  height: 36px;
+  top: 428px;
+  background: linear-gradient(90deg, #1e2834, var(--shoe));
+  border-radius: 22px 22px 18px 18px;
+}
+
+.foot--left {
+  left: 60px;
+  transform: rotate(2deg);
+}
+
+.foot--right {
+  right: 50px;
+  transform: rotate(-4deg);
+}
+
+.credit {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: #526170;
+}
+
+@media (max-width: 720px) {
+  .card {
+    padding: 24px;
+  }
+
+  .canvas {
+    width: 100%;
+  }
+
+  .guitarist {
+    transform: translateX(-50%) scale(0.88);
+    transform-origin: bottom center;
+  }
+}
